@@ -2,7 +2,7 @@ NAME = pipex
 
 SRC_DIR = src
 SRCS = $(SRC_DIR)/pipex.c $(SRC_DIR)/pipex_utils.c
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
 
 LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -19,7 +19,7 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
     make -C $(LIBFT_DIR)
 
-%.o: %.c $(SRC_DIR)/pipex.h Makefile
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/pipex.h Makefile
     $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
