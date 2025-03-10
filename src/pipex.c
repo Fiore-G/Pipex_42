@@ -55,8 +55,7 @@ void  child_process_2(int pipe_fd[2], char *outfile, char *cmd2, char **env_vars
 int  main(int argc, char **argv, char **env_vars)
 {
   int  pipe_fd[2];
-  pid_t  pid1;
-  pid_t  pid2;
+  pid_t  pid;
 
   if (argc != 5)
   {
@@ -65,19 +64,17 @@ int  main(int argc, char **argv, char **env_vars)
   }
   if (pipe(pipe_fd) == -1)
     error();
-  pid1 = fork();
-  if (pid1 == -1)
+  if ((pid = fork()) == -1)
     error();
-  if (pid1 == 0)
+  if (pid == 0)
     child_process_1(pipe_fd, argv[1], argv[2], env_vars);
-  pid2 = fork();
-  if (pid2 == -1)
+  if ((pid = fork()) == -1)
     error();
-  if (pid2 == 0)
+  if (pid == 0)
     child_process_2(pipe_fd, argv[4], argv[3], env_vars);
   close(pipe_fd[0]);
   close(pipe_fd[1]);
-  waitpid(pid1, NULL, 0);
-  waitpid(pid2, NULL, 0);
+  waitpid(-1, NULL, 0);
+  waitpid(-1, NULL, 0);
   return (0);
 }
