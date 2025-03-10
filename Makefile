@@ -13,7 +13,7 @@ INCLUDES = -I $(SRC_DIR) -I $(LIBFT_DIR)
 
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
     $(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
