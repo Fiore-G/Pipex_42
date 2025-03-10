@@ -54,7 +54,7 @@ char  *find_command_in_paths(char *cmd, char **env_vars)
     free(cmd_path);
     i++;
   }
-  free_str__array(paths);
+  free_str_array(paths);
   return (NULL);
 }
 
