@@ -30,3 +30,29 @@ void  redirect_in_out(int input_fd, int output_fd)
   close(output_fd);
 }
 
+void  child_process_1(int pipe_fd[2], char *infile, char *cmd1, char **env_vars)
+{
+  int  input_fd;
+  
+  input_fd = open(infile, O_RDONLY);
+  if (input_fd == -1)
+    error();
+  redirect_in_out(input_fd, pipe_fd[1]);
+  execute_command(cmd1, env_vars);
+}
+
+void  child_process_2(int pipe_fd[2], char *outfile, char *cmd2, char **env_vars)
+{
+  int  output_fd;
+
+  output_fd = open(outfile, O_CREATE | O_WRONLY | O_TRUNC, 0644);
+  if (output_fd == -1)
+    error();
+  redirect_in_out(pipe_fd[0], output_fd);
+  execute_command(cmd2, env_vars);
+}
+
+int  main(int argc, char **argv, char **env_vars)
+{
+  
+}
