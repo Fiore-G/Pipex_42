@@ -1,5 +1,15 @@
 #include "pipex.h"
 
+void  redirect_in_out(int input_fd, int output_fd)
+{
+  if (input_fd == -1 || output_fd == -1)
+    error();
+  if (dup2(input_fd, STDIN_FILENO) == -1 || dup2(output_fd, STDOUT_FILENO) == -1)
+    error();
+  close(input_fd);
+  close(output_fd);
+}
+
 void  execute_command(char *cmd, char **env_vars)
 {
   char  *cmd_path;
