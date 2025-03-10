@@ -9,14 +9,12 @@ void  execute_command(char *cmd, char **env_vars)
   if (!args)
     error();
   cmd_path = find_command_in_paths(args[0], env_vars);
-  if (!cmd_vars)
+  if (!cmd_path)
   {
     free_str_array(args);
     error();
   }
   execve(cmd_path, args, env_vars);
-  free_str_array(args);
-  free(cmd_path);
   error();  
 }
 
@@ -45,7 +43,7 @@ void  child_process_2(int pipe_fd[2], char *outfile, char *cmd2, char **env_vars
 {
   int  output_fd;
 
-  output_fd = open(outfile, O_CREATE | O_WRONLY | O_TRUNC, 0644);
+  output_fd = open(outfile, O_CREAT | O_WRONLY | O_TRUNC, 0644);
   if (output_fd == -1)
     error();
   redirect_in_out(pipe_fd[0], output_fd);
