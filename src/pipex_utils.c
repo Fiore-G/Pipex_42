@@ -20,7 +20,7 @@ char  *find_path_var(char **env_vars)
   return (NULL);
 }
 
-char  *get_paths_array(char **env_vars)
+char  **get_paths_array(char **env_vars)
 {
   char  *path_env;
   
