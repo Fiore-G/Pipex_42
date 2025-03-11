@@ -11,24 +11,24 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I $(SRC_DIR) -I $(LIBFT_DIR)
 
-all:    $(LIBFT)    $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(NAME):    $(OBJS)    $(LIBFT)
-    $(CC)    $(CFLAGS)    $(INCLUDES) -o    $(NAME)    $(OBJS)    $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
+    $(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBFT)
 
 $(LIBFT):
-    make -C    $(LIBFT_DIR)
+    make -C $(LIBFT_DIR)
 
-$(SRC_DIR)/%.o:    $(SRC_DIR)/%.c    $(SRC_DIR)/pipex.h    Makefile
-    $(CC)    $(CFLAGS)    $(INCLUDES) -c $< -o $@
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/pipex.h Makefile
+    $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-    rm -f    $(OBJS)
-    make -C    $(LIBFT_DIR)    clean
+    rm -f $(OBJS)
+    make -C $(LIBFT_DIR) clean
 
-fclean:    clean
-    rm -f    $(NAME)
-    make -C    $(LIBFT_DIR)    fclean
+fclean: clean
+    rm -f $(NAME)
+    make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
