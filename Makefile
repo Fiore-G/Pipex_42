@@ -8,7 +8,7 @@ LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I $(SRC_DIR) -I $(LIBFT_DIR)
 
 all: $(LIBFT) $(NAME)
