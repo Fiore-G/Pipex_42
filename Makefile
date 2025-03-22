@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: figarcia <figarcia@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/22 21:29:56 by figarcia          #+#    #+#              #
+#    Updated: 2025/03/22 21:30:01 by figarcia         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = pipex
 
 SRC_DIR = src
 SRCS = $(SRC_DIR)/pipex.c $(SRC_DIR)/pipex_utils.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(SRC_DIR)/%.o)
 
-LIBFT_DIR = Libft
+LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
